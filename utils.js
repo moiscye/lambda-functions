@@ -19,7 +19,8 @@ exports.downloadImageFromS3 = async (source) => {
   };
   const inputData = await s3.getObject(params).promise();
 
-  return Buffer.from(inputData.Body, "binary");
+  const res = { buf: Buffer.from(inputData.Body, "binary"), filename };
+  return res;
 };
 
 exports.resize = async (buf, width, height) => {
